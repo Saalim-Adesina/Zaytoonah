@@ -4,7 +4,7 @@
 
 ### Method 1 (Easiest) - Install the APK File
 1. Click on the file below to download the APK file on your phone
-(PENDING LINK)[https://google.com]
+(LINK)[https://expo.dev/accounts/omar10211/projects/zaytoonah/builds/6bb7de82-2540-443d-80d3-b944868c23d4]
 
 2. Go to settings and ensure the setting: "Install Apps from Unknown sources" is toggled on.
 
