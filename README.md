@@ -4,7 +4,7 @@
 
 ### Method 1 (Easiest) - Install the APK File
 1. Click on the file below to download the APK file on your phone
-(LINK)[https://expo.dev/accounts/omar10211/projects/zaytoonah/builds/6bb7de82-2540-443d-80d3-b944868c23d4]
+(LINK)[https://expo.dev/accounts/omar10211/projects/zaytoonah/builds/fb77549b-fc60-45d9-9a7b-13594e928c7e]
 
 2. Go to settings and ensure the setting: "Install Apps from Unknown sources" is toggled on.
 
