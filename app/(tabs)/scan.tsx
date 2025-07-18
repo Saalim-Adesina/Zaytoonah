@@ -2,12 +2,13 @@ import { View, Text, Button, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
 import { Link } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { CameraView, CameraType, useCameraPermissions } from 'expo-camera'
+import { CameraView, CameraType, useCameraPermissions, Camera } from 'expo-camera'
 import { useState } from 'react'
+
 
 export default function Scan() {
   const [facing, setFacing] = useState<CameraType>('back')
-  const [permission, setPermission] = useCameraPermissions()
+  const [permission, requestPermission] = useCameraPermissions()
 
   if (!permission) {return <View />}
   if (!permission.granted) {
@@ -15,31 +16,63 @@ export default function Scan() {
   return (
     <View>
       <Text>We need your permission to show the camera</Text>
-      <Button title="grant permission" />
+      <Button title="grant permission" onPress={requestPermission} />
     </View>
   );
-}
+  }
+  function toggleCameraFacing() {
+    setFacing(current => (current === 'back' ? 'front' : 'back'));
+  }
   
   return (
-    <SafeAreaView>
-    <View>
-      <Text>Scan app</Text>
-      <Link href='/' asChild>
-        <TouchableOpacity>
-          <Text style={styles.button}>Go Home</Text>
-        </TouchableOpacity>
-      </Link>
-    </View>
+    <SafeAreaView style={styles.parentContainer}>
+      <CameraView style={styles.camera} facing={facing}>
+        <View style={styles.rectangleOverlay}></View>
+      </CameraView>
+      <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
+        <Text style={styles.buttonText}>Flip Camera</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   )
 }
 
+
+
 const styles = StyleSheet.create({
+  parentContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
   button: {
-    backgroundColor: '#022e00ff',
+    backgroundColor: '#0e8008ff',
     padding: 12,
     borderRadius: 8,
     alignItems: 'center',
-    color: '#ffffff'
+    width: '60%',
+    justifyContent: 'center',
+    textAlign: 'center',
+    margin: 10
+  },
+  buttonText: {
+    color: '#ffffff',
+  },
+  cameraWrapper: {
+    flex: 1
+  },
+  camera: {
+    minHeight: '40%',
+    minWidth: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+  },
+  rectangleOverlay: {
+    borderWidth: 2,
+    borderColor: 'black',
+    borderRadius: 8,
+    margin: 8,
+    height: '40%',
+    width: 300 
   }
 })
