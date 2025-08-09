@@ -4,17 +4,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Settings() {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
         <Text>Settings Page</Text>
     </SafeAreaView>
   )
 }
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#d2fe9aff'
-    },
-  })

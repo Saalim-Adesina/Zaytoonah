@@ -1,6 +1,7 @@
 import { Tabs } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 
+
 export default function TabLayout() {
     return (
         <Tabs
@@ -15,6 +16,13 @@ export default function TabLayout() {
                 )
             }}
             />
+            <Tabs.Screen name='scan' options={{
+                headerShown: true,
+                title: "Scan",
+                tabBarIcon: ({focused, color}) => (
+                    <Ionicons name='qr-code-outline' color={color} size={24}/>
+                )
+            }}/>
             <Tabs.Screen name='settings' options={{
                 headerShown: false,
                 title: "Settings",
@@ -24,13 +32,15 @@ export default function TabLayout() {
     
                 }}
             />
-            <Tabs.Screen name='scan' options={{
-                headerShown: false,
-                title: "Scan",
+            <Tabs.Screen name='scan2' options={{
+                headerShown: true,
+                title: "Scan V2",
                 tabBarIcon: ({focused, color}) => (
                     <Ionicons name='qr-code-outline' color={color} size={24}/>
                 )
-            }}/>
+                }}
+            />
+
         </Tabs>
     )
 }
