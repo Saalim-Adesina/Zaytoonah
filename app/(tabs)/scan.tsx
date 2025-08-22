@@ -13,6 +13,8 @@ import { Link } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { CameraView, CameraType, useCameraPermissions, Camera, BarcodeBounds, BarcodeScanningResult, BarcodeSettings, BarcodePoint, BarcodeSize, BarcodeType, ScanningResult } from 'expo-camera'
 import { useState, useRef, useEffect } from 'react'
+import allergens from '../../src/allergens'
+
 
 const OPENAPI_API_KEY = ''
 
@@ -30,6 +32,7 @@ export default function Scan() {
 	const [height, setHeight] = useState<number | undefined>(0)
 	const [width, setWidth] = useState<number | undefined>(0)
 	const [cameraLayout, setCameraLayout] = useState<any>(0)
+	const [chronic_condition, setChronicCondition] = useState<any>('')
 	const [safetyResult, setSafetyResult] = useState<SafetyResult | null>({safe: 'Checking', allergensFound: []});
 
 	type SafetyResult = {
@@ -109,7 +112,7 @@ export default function Scan() {
   	}
 
 	// Send ingredients to backend
-	function fetchSafetyFunction(ingredients: string | string[]): SafetyResult {
+	function fetchSafetyFunction(ingredients: string | string[], chronic_condition:any): SafetyResult {
 
 		// Convert ingredients to a normalized string
 		const ingString = Array.isArray(ingredients)
@@ -117,6 +120,9 @@ export default function Scan() {
 			: ingredients.toLowerCase();
 
 		// Common gluten sources
+		const chronic_conditions = {
+
+		}
 		const glutenKeywords = [
 			"wheat",
 			"barley",
@@ -154,7 +160,7 @@ export default function Scan() {
 		const product = await fetchProductData(scanningResult.data);
 		if (product) {
 			setProductInfo({ name: product.name, ingredients: product.ingredients, safetyStatus: 'checking' });
-			const safetyCheck = fetchSafetyFunction(product.ingredients) 
+			const safetyCheck = fetchSafetyFunction(product.ingredients, []) // TODO Add specific alergen  
 			setSafetyResult(safetyCheck)
 			setScanningActive(false) // disable scanning once product is found
 		} else {
@@ -179,7 +185,6 @@ export default function Scan() {
 			barcodeTypes: ['ean13','upc_a','ean8','aztec','code39','aztec','ean13','ean8','pdf417','upc_e','datamatrix','code39','code93','itf14','codabar','code128','upc_a'], 
 			}} onBarcodeScanned={onDetectBarcode} >
 			</CameraView>
-
 			{/* Overlay */}
 			<View style={styles.overlay}>
 				{/* Top section */}
@@ -245,7 +250,6 @@ export default function Scan() {
 
   )
 }
-
 
 
 const styles = StyleSheet.create({
