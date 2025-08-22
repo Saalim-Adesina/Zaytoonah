@@ -130,7 +130,8 @@ export default function Scan() {
 			"triticale",
 			"malt",
 			"brewer's yeast",
-			"oats" // some oats can be gluten-free, but we flag them for safety
+			"oats", 
+			"gluten" // some oats can be gluten-free, but we flag them for safety
 		];
 
 		// Check which allergens appear
