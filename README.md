@@ -3,7 +3,7 @@
 ## Set Up
 
 1. Click on the file below to download the APK file on your phone
-(LINK)[https://expo.dev/accounts/omar10211/projects/zaytoonah/builds/fb77549b-fc60-45d9-9a7b-13594e928c7e]
+(LINK)[https://expo.dev/accounts/omar10211/projects/zaytoonah/builds/f47136ae-3923-4e96-87c0-4f226498c362]
 
 2. Go to settings and ensure the setting: "Install Apps from Unknown sources" is toggled on.
 
