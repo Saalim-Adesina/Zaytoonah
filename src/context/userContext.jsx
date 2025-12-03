@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 // Create context
 const UserContext = createContext();
@@ -6,12 +6,36 @@ const UserContext = createContext();
 // Provider wrapper
 export const UserProvider = ({ children }) => {
   const [userSettings, setUserSettings] = useState({
-    allergy: "",
-    name: "",
+    name: "Saalim",
+    email: "saalim@example.com",
+    avatar: require('../../assets/images/3d_avatar_21.png'),
+    conditions: [],
+    details: [],
+    stats: {
+      age: '',
+      weight: '',
+      height: ''
+    }
   });
 
+  const updateProfile = (updates) => {
+    setUserSettings(prev => ({ ...prev, ...updates }));
+  };
+
+  const logout = () => {
+    // Reset to initial state or clear specific fields
+    setUserSettings({
+      name: "",
+      email: "",
+      avatar: null,
+      conditions: [],
+      details: [],
+      stats: { age: '', weight: '', height: '' }
+    });
+  };
+
   return (
-    <UserContext.Provider value={{ userSettings, setUserSettings }}>
+    <UserContext.Provider value={{ userSettings, setUserSettings, updateProfile, logout }}>
       {children}
     </UserContext.Provider>
   );

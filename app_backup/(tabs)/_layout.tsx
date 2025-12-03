@@ -32,14 +32,6 @@ export default function TabLayout() {
     
                 }}
             />
-            <Tabs.Screen name='scan2' options={{
-                headerShown: true,
-                title: "Scan V2",
-                tabBarIcon: ({focused, color}) => (
-                    <Ionicons name='qr-code-outline' color={color} size={24}/>
-                )
-                }}
-            />
 
         </Tabs>
     )

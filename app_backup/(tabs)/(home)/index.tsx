@@ -1,10 +1,14 @@
 import { Link } from "expo-router";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity, StatusBar} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
+               <StatusBar
+           backgroundColor="black"
+           barStyle="dark-content"
+         />
       {/* Top decorative olives */}
       <Image
         source={require("../../../assets/images/left-character.png")}
@@ -29,7 +33,7 @@ export default function HomeScreen() {
       />
 
       {/* Next button */}
-      <Link href="/scan" asChild>
+      <Link href="/settings" asChild>
         <TouchableOpacity style={styles.nextButton}>
           <Text style={styles.nextText}>Next →</Text>
         </TouchableOpacity>
@@ -48,7 +52,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     alignItems: "center",
-    marginTop: 170,
+    marginTop: 230,
   },
   smallText: {
     fontSize: 26,

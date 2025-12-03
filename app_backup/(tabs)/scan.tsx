@@ -4,16 +4,15 @@ import {
     Button, 
     TouchableOpacity, 
     StyleSheet, 
-    TouchableWithoutFeedback, 
     Dimensions,
-	StatusBar,
+	StatusBar
 } from 'react-native'
 import React from 'react'
-import { Link } from 'expo-router'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { CameraView, CameraType, useCameraPermissions, Camera, BarcodeBounds, BarcodeScanningResult, BarcodeSettings, BarcodePoint, BarcodeSize, BarcodeType, ScanningResult } from 'expo-camera'
+
+import { CameraView, CameraType, useCameraPermissions, BarcodeScanningResult,  } from 'expo-camera'
 import { useState, useRef, useEffect } from 'react'
-import allergens from '../../src/allergens'
+import { useFocusEffect } from 'expo-router'
+
 
 
 const OPENAPI_API_KEY = ''
@@ -71,6 +70,19 @@ export default function Scan() {
 
 		return () => clearTimeout(timer); // cleanup on new scan or unmount
 	}, [lastBarCode]);
+
+	useFocusEffect(
+	React.useCallback(() => {
+		setShowCamera(true);
+		setScanningActive(true);
+		console.log("Camera focused")
+		return () => {
+		setShowCamera(false);
+		setScanningActive(false);
+		console.log("Camera unfocused")
+		};
+	}, [])
+	);
 
 	// Overlay
 	const {width: screenWidth, height: screenHeight} = Dimensions.get('window')
@@ -174,6 +186,10 @@ export default function Scan() {
 	return (
 	<>	
 	<View style={styles.parentContainer}>
+		<StatusBar
+			backgroundColor="black"
+			barStyle="dark-content"
+		/>
         {showCamera ? (
 			<>
 			{/*Camera View*/}
